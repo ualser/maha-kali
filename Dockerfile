@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y \
     proxychains tor
 
 
-# More Wordlists for Wordlist God
+# More Wordlists for the Wordlist God
 RUN git clone https://github.com/danielmiessler/SecLists /usr/share/seclists
 
 #Open port 8080 for sqlmap-server
