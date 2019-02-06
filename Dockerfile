@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y \
     proxychains tor
 
 # More Wordlists for the Wordlist God!
-# Include only selected directories from SecLists through git *sparse-checkout* (and still pullign slow AF)
+# Include only selected directories from SecLists through git *sparse-checkout* (and still pulling slow AF)
 RUN mkdir /usr/share/seclists && cd /usr/share/seclists && \
     git init && git remote add origin -f https://github.com/danielmiessler/SecLists && \
     git config core.sparseCheckout true && \
