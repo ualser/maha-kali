@@ -9,9 +9,23 @@ RUN apt-get update && apt-get install -y \
     sqlmap dirb \
     proxychains tor
 
+# More Wordlists for the Wordlist God!
+# Include only selected directories from SecLists through git *sparse-checkout* (and still pullign slow AF)
+RUN mkdir /usr/share/seclists && cd /usr/share/seclists && \
+    git init && git remote add origin -f https://github.com/danielmiessler/SecLists && \
+    git config core.sparseCheckout true && \
+    echo "Discovery" >> .git/info/sparse-checkout && \
+    echo "Passwords/Leaked-Databases/rockyou.txt.tar.gz" >> .git/info/sparse-checkout && \
+#    echo "Fuzzing/Polyglots" >> .git/info/sparse-checkout && \s
+#    echo "Usernames" >> .git/info/sparse-checkout && \
+    git pull origin master && \
+    cd /usr/share/seclists/Passwords/Leaked-Databases/ && tar -xvzf rockyou.txt.tar.gz
 
-# More Wordlists for the Wordlist God
-RUN git clone https://github.com/danielmiessler/SecLists /usr/share/seclists
+#OR
+#RUN git clone https://github.com/danielmiessler/SecLists /usr/share/seclists
 
 #Open port 8080 for sqlmap-server
 EXPOSE 8080
+
+#Change working directory
+WORKDIR /root/
