@@ -3,7 +3,7 @@ FROM kalilinux/kali-linux-docker:latest
 
 # Install basic toolkit
 RUN apt-get update && apt-get install -y \
-    git python3-pip python-dev\
+    git vim python3-pip python-dev\
     curl dnsutils locate \
     metasploit-framework nmap \
     sqlmap dirb \
