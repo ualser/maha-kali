@@ -5,7 +5,7 @@ FROM kalilinux/kali-linux-docker:latest
 RUN apt-get update && apt-get install -y \
     git vim python3-pip python-dev\
     curl dnsutils locate \
-    metasploit-framework nmap nc\
+    metasploit-framework nmap netcat\
     sqlmap dirb \
     proxychains tor
 
