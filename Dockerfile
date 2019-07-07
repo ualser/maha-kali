@@ -6,7 +6,7 @@ RUN apt-get update && apt-get install -y \
     git vim python3-pip python-dev\
     curl dnsutils locate \
     metasploit-framework nmap netcat\
-    sqlmap dirb \
+    sqlmap dirb wordlists \
     proxychains tor
 
 # More Wordlists for the Wordlist God!
