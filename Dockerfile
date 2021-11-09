@@ -1,16 +1,19 @@
 # Kali Linux base image
-FROM kalilinux/kali-linux-docker:latest
+FROM kalilinux/kali-rolling:latest
+
+RUN apt-get update
 
 # Install basic toolkit
-RUN apt-get update && apt-get install -y \
-    git vim python3-pip python-dev\
+RUN apt-get install -y \
+    git vim python3-pip \
     curl dnsutils locate \
-    metasploit-framework nmap nikto netcat\
+    metasploit-framework nmap nikto netcat-traditional\
     sqlmap dirb wordlists \
     proxychains tor
 
 # More Wordlists for the Wordlist God!
 # Include only selected directories from SecLists through git *sparse-checkout* (and still pulling slow AF)
+
 RUN mkdir /usr/share/seclists && cd /usr/share/seclists && \
     git init && git remote add origin -f https://github.com/danielmiessler/SecLists && \
     git config core.sparseCheckout true && \
@@ -25,7 +28,7 @@ RUN mkdir /usr/share/seclists && cd /usr/share/seclists && \
 #RUN git clone https://github.com/danielmiessler/SecLists /usr/share/seclists
 
 #Open port 8080 for sqlmap-server
-EXPOSE 8080
+#EXPOSE 8080
 
 #Change working directory
 WORKDIR /root/
